@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphing Ionization Energy, Electronegativity, and Atomic Radius</title>
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--ink:#1c2a3f;--mute:#5a6a80;--line:#cfd7e2;--cell:#eef2f7;--ok:#146c3a;--okbg:#e3f5ea;--bad:#9b1c1c;--badbg:#fdeaea;--accent:#1d4ed8;--focus:#f59e0b;--red:#d62828;--blue:#1d4ed8;--green:#15803d;--yellow:#d4a000;--orange:#e8710a}
+@media (prefers-color-scheme:dark){:root{--bg:#121a26;--card:#1a2433;--ink:#e6edf6;--mute:#9fb0c6;--line:#34455c;--cell:#243247;--ok:#7be0a4;--okbg:#17382a;--bad:#ff9d9d;--badbg:#44201f;--accent:#7aa2ff;--red:#ff7b7b;--blue:#7aa2ff;--green:#4ade80;--yellow:#fcd34d;--orange:#fb923c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.25}
+h1{font-size:1.7rem;margin:.2em 0}
+h2{font-size:1.3rem;margin:0 0 .4em}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.sub{color:var(--mute);margin:0}
+.ident{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+.ident label{flex:1;min-width:140px;font-size:.85rem;color:var(--mute)}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px}
+textarea{min-height:76px}
+button{font:inherit;color:var(--ink);background:var(--cell);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+@media (prefers-color-scheme:dark){button.primary{color:#0b1220}}
+button:disabled{opacity:.5;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:3px 8px;text-align:center}
+th{background:var(--cell)}
+.tw{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:6px}
+.q{margin:14px 0}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.chip{min-width:44px;font-weight:600}
+.chip.used{opacity:.35}
+.seq{display:flex;gap:6px;flex-wrap:wrap;min-height:40px;align-items:center;padding:6px;border:2px dashed var(--line);border-radius:8px;margin:6px 0}
+.seq button{background:var(--card);border:2px solid var(--accent);font-weight:600}
+.seq .n{font-size:.7rem;color:var(--mute);margin-right:2px}
+.fb{font-weight:600;margin-top:4px}
+.good{color:var(--ok)}.nope{color:var(--bad)}
+.hint{font-size:.88rem;color:var(--mute)}
+.tg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0}
+.tg label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.tg svg{width:16px;height:16px;flex:none}
+.graph>svg{width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.readout{min-height:1.6em;font-size:.9rem;margin:4px 0}
+.sample{display:none;margin-top:6px;padding:8px 12px;border-left:4px solid var(--ok);background:var(--okbg);border-radius:0 6px 6px 0}
+.sample.show{display:block}
+text{fill:var(--ink);font-family:system-ui,sans-serif}
+.halo{paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+@media print{body{background:#fff;color:#000}.row,.noprint{display:none}section{break-inside:avoid}.sample{display:block}}
+</style>
+</head>
+<body>
+<main>
+<h1>Graphing Ionization Energy, Electronegativity, and Atomic Radius</h1>
+<p class="sub">TEKS C.5C &middot; 3.2 Periodic Trends</p>
+<div class="ident"><label>Name<input type="text"></label><label>Period<input type="text"></label><label>Date<input type="text"></label></div>
+
+<section>
+<h2>Purpose</h2>
+<p>Graph data and draw conclusions about trends across a period and down a family. You will build three graphs: atomic number vs. 1st ionization energy, atomic number vs. electronegativity, and atomic number vs. atomic radius.</p>
+<p><b>How the graphs work here:</b> Each graph starts with every element plotted as a gray dot. Turn on a series to add its colored dots and connecting line. Click any dot to read its value.</p>
+<h3>Periodic Trends Data Table</h3>
+<div class="tw"><table id="dt"><thead><tr><th>Atomic Number</th><th>Element</th><th>1st Ionization Energy (kJ/mol)</th><th>Electronegativity</th><th>Atomic Radius (&Aring;)</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="p1"><h2>Part 1: Analyzing the Trends &ndash; Ionization Energy</h2></section>
+<section id="p2"><h2>Part 2: Analyzing the Trends &ndash; Electronegativity</h2></section>
+<section id="p3"><h2>Part 3: Analyzing the Trends &ndash; Atomic Radius</h2></section>
+
+<section id="p4"><h2>Part 4: Conclusion</h2>
+<p>Based on the data, analyze the trends in the periodic table for atomic radius, ionization energy, and electronegativity.</p>
+<div id="concl"></div>
+</section>
+<div class="row"><button onclick="window.print()">Print</button></div>
+</main>
+
+<script>
+const SYM="H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca".split(" ");
+const IE=[1312,2372,520,900,801,1087,1402,1314,1681,2081,496,738,578,787,1012,1000,1251,1521,419,590];
+const EN=[2.2,null,0.98,1.57,2.04,2.55,3.04,3.44,3.98,null,0.93,1.31,1.61,1.9,2.19,2.58,3.16,null,0.82,1];
+const R=[0.53,0.31,1.67,1.12,0.87,0.67,0.56,0.48,0.42,0.38,1.9,1.45,1.18,1.11,0.98,0.88,0.79,0.71,2.43,1.94];
+const range=(a,b)=>Array.from({length:b-a+1},(_,i)=>a+i);
+const NS="http://www.w3.org/2000/svg";
+
+// data table
+const tb=document.querySelector("#dt tbody");
+SYM.forEach((s,i)=>{tb.insertAdjacentHTML("beforeend",`<tr><td>${i+1}</td><td>${s}</td><td>${IE[i]}</td><td>${EN[i]===null?"--":EN[i]}</td><td>${R[i]}</td></tr>`);});
+
+// ---------- graphing ----------
+const SH={circle:(x,y)=>`<circle cx="${x}" cy="${y}" r="6"/>`,square:(x,y)=>`<rect x="${x-5.5}" y="${y-5.5}" width="11" height="11"/>`,
+ triangle:(x,y)=>`<polygon points="${x},${y-7} ${x+7},${y+5} ${x-7},${y+5}"/>`,diamond:(x,y)=>`<polygon points="${x},${y-7} ${x+7},${y} ${x},${y+7} ${x-7},${y}"/>`,
+ down:(x,y)=>`<polygon points="${x-7},${y-5} ${x+7},${y-5} ${x},${y+7}"/>`};
+const SERIES={
+ alk:{name:"Alkali metals",els:"Li, Na, K",zs:[3,11,19],c:"--red",sh:"circle",lab:"Alkali Metals"},
+ noble:{name:"Noble gases",els:"He, Ne, Ar",zs:[2,10,18],c:"--blue",sh:"square",lab:"Noble Gases"},
+ hal:{name:"Halogens",els:"F, Cl",zs:[9,17],c:"--blue",sh:"square",lab:"Halogens"},
+ carb:{name:"Carbon and silicon",els:"C, Si",zs:[6,14],c:"--green",sh:"triangle",lab:"Carbon Family"},
+ p2a:{name:"2nd period",els:"elements 3\u201310",zs:range(3,10),c:"--yellow",sh:"diamond",lab:"2nd Period"},
+ p2b:{name:"2nd period",els:"elements 3\u20139",zs:range(3,9),c:"--yellow",sh:"diamond",lab:"2nd Period"},
+ p3a:{name:"3rd period",els:"elements 11\u201318",zs:range(11,18),c:"--orange",sh:"down",lab:"3rd Period"},
+ p3b:{name:"3rd period",els:"elements 11\u201317",zs:range(11,17),c:"--orange",sh:"down",lab:"3rd Period"}
+};
+function graph(host,cfg){
+  const W=640,H=400,L=64,Rr=22,T=36,B=54,pw=W-L-Rr,ph=H-T-B;
+  const X=z=>L+(z-0)/21*pw, Y=v=>T+ph-(v-cfg.min)/(cfg.max-cfg.min)*ph;
+  const on={};const wrap=document.createElement("div");wrap.className="graph";
+  const tg=document.createElement("div");tg.className="tg";
+  cfg.series.forEach(k=>{const s=SERIES[k];const id=cfg.key+k;
+    tg.insertAdjacentHTML("beforeend",`<label><input type="checkbox" id="${id}"><svg viewBox="-9 -9 18 18" style="fill:var(${s.c})">${SH[s.sh](0,0)}</svg><span><b>${s.name}</b> (${s.els})</span></label>`);});
+  const ro=document.createElement("div");ro.className="readout";ro.setAttribute("aria-live","polite");ro.textContent="Click a dot to read its value.";
+  const svg=document.createElementNS(NS,"svg");svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.setAttribute("role","img");svg.setAttribute("aria-label",cfg.title);
+  wrap.append(tg,svg,ro);host.appendChild(wrap);
+  function draw(){
+    let h=`<text x="${W/2}" y="22" text-anchor="middle" font-size="15" font-weight="700">${cfg.title}</text>`;
+    for(let v=cfg.min;v<=cfg.max+1e-9;v+=cfg.step){const y=Y(v);h+=`<line x1="${L}" x2="${W-Rr}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-8}" y="${y+4}" text-anchor="end" font-size="11">${cfg.fmt(v)}</text>`;}
+    for(let z=1;z<=20;z++){const x=X(z);h+=`<line x1="${x}" x2="${x}" y1="${T}" y2="${T+ph}" stroke="var(--line)" stroke-opacity=".5"/><text x="${x}" y="${T+ph+16}" text-anchor="middle" font-size="10.5">${z}</text>`;}
+    h+=`<line x1="${L}" x2="${L}" y1="${T}" y2="${T+ph}" stroke="var(--ink)" stroke-width="1.5"/><line x1="${L}" x2="${W-Rr}" y1="${T+ph}" y2="${T+ph}" stroke="var(--ink)" stroke-width="1.5"/>`;
+    h+=`<text x="${L+pw/2}" y="${H-8}" text-anchor="middle" font-size="12.5">Atomic number</text>`;
+    h+=`<text transform="translate(16 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="12.5">${cfg.ylab}</text>`;
+    const pts=z=>({x:X(z),y:Y(cfg.data[z-1])});
+    for(let z=1;z<=20;z++){if(cfg.data[z-1]==null)continue;const p=pts(z);h+=`<circle class="dot" data-z="${z}" cx="${p.x}" cy="${p.y}" r="4" style="fill:var(--mute);fill-opacity:.55;cursor:pointer"/>`;}
+    const placed=[];
+    cfg.series.forEach(k=>{if(!on[k])return;const s=SERIES[k];const zs=s.zs.filter(z=>cfg.data[z-1]!=null);
+      h+=`<polyline fill="none" style="stroke:var(${s.c})" stroke-width="2.5" points="${zs.map(z=>{const p=pts(z);return p.x+","+p.y;}).join(" ")}"/>`;
+      zs.forEach(z=>{const p=pts(z);h+=`<g class="dot" data-z="${z}" style="fill:var(${s.c});stroke:var(--card);stroke-width:1.5;cursor:pointer">${SH[s.sh](p.x,p.y)}</g>`;});
+      const e=pts(zs[zs.length-1]),w=s.lab.length*7.6+4;
+      const opts=[[10,-10,0],[10,18,0],[-10,-10,1],[-10,18,1],[10,-28,0],[10,36,0],[-10,-28,1],[-10,36,1],[10,54,0],[-10,54,1]];
+      let pick=null;
+      for(const [dx,dy,en] of opts){const x0=en?e.x+dx-w:e.x+dx,y0=e.y+dy-12,box=[x0,y0,x0+w,y0+16];
+        if(box[0]<L||box[2]>W-Rr||box[1]<T-4||box[3]>T+ph)continue;
+        if(placed.some(b=>box[0]<b[2]&&box[2]>b[0]&&box[1]<b[3]&&box[3]>b[1]))continue;
+        pick={dx,dy,en,box};break;}
+      if(!pick)pick={dx:10,dy:-10,en:0,box:[e.x+10,e.y-22,e.x+10+w,e.y-6]};
+      placed.push(pick.box);
+      h+=`<text class="halo" x="${e.x+pick.dx}" y="${e.y+pick.dy}" text-anchor="${pick.en?"end":"start"}" font-size="12" font-weight="700" style="fill:var(${s.c})">${s.lab}</text>`;
+    });
+    svg.innerHTML=h;
+    svg.querySelectorAll(".dot").forEach(d=>d.onclick=()=>{const z=+d.dataset.z;ro.textContent=SYM[z-1]+" (atomic number "+z+"): "+cfg.fmt(cfg.data[z-1])+" "+cfg.unit;});
+  }
+  cfg.series.forEach(k=>{document.getElementById(cfg.key+k).onchange=e=>{on[k]=e.target.checked;draw();};});
+  draw();
+}
+
+// ---------- ordering tool ----------
+function order(host,o){
+  const d=document.createElement("div");d.className="q";
+  d.innerHTML=`<div>${o.prompt}</div>${o.note?`<div class="hint">${o.note}</div>`:""}<div class="chips"></div><div class="seq" aria-label="Your order"></div><div class="row"><button class="primary">Check order</button><button>Clear</button></div><div class="fb" aria-live="polite"></div>`;
+  host.appendChild(d);
+  const chips=d.querySelector(".chips"),seq=d.querySelector(".seq"),fb=d.querySelector(".fb"),[chk,clr]=d.querySelectorAll(".row button");
+  let cur=[];
+  const shuffled=o.items.slice().sort((a,b)=>a.localeCompare(b));
+  function paint(){
+    chips.innerHTML="";shuffled.forEach(it=>{const b=document.createElement("button");b.className="chip"+(cur.includes(it)?" used":"");b.textContent=it;b.disabled=cur.includes(it);b.onclick=()=>{cur.push(it);fb.textContent="";paint();};chips.appendChild(b);});
+    seq.innerHTML=cur.length?"":'<span class="hint">Tap the elements in order, starting with '+o.start+'.</span>';
+    cur.forEach((it,i)=>{const b=document.createElement("button");b.innerHTML='<span class="n">'+(i+1)+'</span>'+it;b.title="Tap to remove";b.onclick=()=>{cur.splice(i,1);fb.textContent="";paint();};seq.appendChild(b);});
+  }
+  chk.onclick=()=>{
+    if(cur.length<o.items.length){fb.className="fb nope";fb.textContent="Place all "+o.items.length+" elements first.";return;}
+    const bad=cur.findIndex((x,i)=>x!==o.answer[i]);
+    if(bad<0){fb.className="fb good";fb.textContent="Correct. "+o.why;}
+    else{fb.className="fb nope";fb.textContent="Not quite. Position "+(bad+1)+" needs another look. Check where each element sits on the periodic table.";}
+  };
+  clr.onclick=()=>{cur=[];fb.textContent="";paint();};
+  paint();
+}
+
+// ---------- open response with sample ----------
+function open(host,o){
+  const d=document.createElement("div");d.className="q";
+  d.innerHTML=`<div>${o.prompt}</div><textarea aria-label="Your answer"></textarea><div class="row noprint"><button disabled>Compare with sample answer</button></div><div class="sample"><b>Sample answer:</b> ${o.sample}</div>`;
+  host.appendChild(d);
+  const ta=d.querySelector("textarea"),btn=d.querySelector("button"),sm=d.querySelector(".sample");
+  ta.oninput=()=>{btn.disabled=ta.value.trim().length<8;};
+  btn.onclick=()=>sm.classList.toggle("show");
+}
+
+// ---------- build the parts ----------
+const P1=document.getElementById("p1"),P2=document.getElementById("p2"),P3=document.getElementById("p3");
+open(P1,{prompt:"<b>1.</b> In your own words, define <i>ionization energy</i>.",sample:"The energy required to remove the highest-energy (outermost) electron from a neutral atom in the gas state."});
+order(P1,{prompt:"<b>2a.</b> Place these elements in order of <b>decreasing</b> (large to small) ionization energy: O, C, F, K, Li, Ne",items:["O","C","F","K","Li","Ne"],answer:["Ne","F","O","C","Li","K"],start:"the largest",why:"Ne (2081), F (1681), O (1314), C (1087), Li (520), K (419) kJ/mol."});
+order(P1,{prompt:"<b>2b.</b> Place these elements in order of <b>increasing</b> (small to large) ionization energy: Ne, Sc, Fr, Sr, F",note:"Sc, Fr, and Sr are not in the data table. Use the periodic table and the trends.",items:["Ne","Sc","Fr","Sr","F"],answer:["Fr","Sr","Sc","F","Ne"],start:"the smallest",why:"Fr is at the bottom left, Sr is above and to the right of Fr, and Sc is above and to the right of Sr. F and Ne are at the top right, with Ne farthest right."});
+P1.insertAdjacentHTML("beforeend","<p><b>3\u20138.</b> Graph the 1st ionization energy as a function of atomic number. Turn on each series below to add it to the graph and label its line.</p>");
+const g1=document.createElement("div");P1.appendChild(g1);
+graph(g1,{key:"ie",title:"Atomic Number vs. 1st Ionization Energy",ylab:"1st ionization energy (kJ/mol)",unit:"kJ/mol",data:IE,min:0,max:2500,step:500,fmt:v=>String(Math.round(v)),series:["alk","noble","carb","p2a","p3a"]});
+open(P1,{prompt:"<b>9.</b> According to your graph, what is the trend for ionization energy down a family?",sample:"Ionization energy decreases down a family. For the alkali metals, Li (520) to Na (496) to K (419) kJ/mol. The noble gases also decrease from He (2372) to Ne (2081) to Ar (1521)."});
+open(P1,{prompt:"<b>10.</b> According to your graph, what is the trend for ionization energy across a period?",sample:"Ionization energy generally increases across a period, from the alkali metal on the left to the noble gas on the right (Li 520 to Ne 2081 kJ/mol). There are small dips, such as B (801) below Be (900) and O (1314) below N (1402), but the overall pattern rises."});
+
+open(P2,{prompt:"<b>1.</b> In your own words, define <i>electronegativity</i>.",sample:"The ability of an atom to attract electrons in a chemical bond."});
+order(P2,{prompt:"<b>2a.</b> Place these elements in order of <b>decreasing</b> (large to small) electronegativity: F, Be, N, Li, B",items:["F","Be","N","Li","B"],answer:["F","N","B","Be","Li"],start:"the largest",why:"F (3.98), N (3.04), B (2.04), Be (1.57), Li (0.98)."});
+order(P2,{prompt:"<b>2b.</b> Place these elements in order of <b>increasing</b> (small to large) electronegativity: Ba, Mg, Be, Ca, Sr",note:"Ba, Ca, and Sr are not in the data table. Use the periodic table and the trends.",items:["Ba","Mg","Be","Ca","Sr"],answer:["Ba","Sr","Ca","Mg","Be"],start:"the smallest",why:"These are all in the same family, and electronegativity increases toward the top: Ba, Sr, Ca, Mg, Be."});
+P2.insertAdjacentHTML("beforeend","<p><b>3\u20138.</b> Graph electronegativity as a function of atomic number. The noble gases (He, Ne, Ar) have no value in the table, so they are not plotted.</p>");
+const g2=document.createElement("div");P2.appendChild(g2);
+graph(g2,{key:"en",title:"Atomic Number vs. Electronegativity",ylab:"Electronegativity",unit:"",data:EN,min:0,max:4.5,step:0.5,fmt:v=>v.toFixed(v%1?1:1),series:["alk","hal","carb","p2b","p3b"]});
+open(P2,{prompt:"<b>9.</b> According to your graph, what is the trend for electronegativity down a family?",sample:"Electronegativity decreases down a family. For the alkali metals, Li (0.98) to Na (0.93) to K (0.82). For the halogens, F (3.98) to Cl (3.16)."});
+open(P2,{prompt:"<b>10.</b> According to your graph, what is the trend for electronegativity across a period?",sample:"Electronegativity increases across a period, from left to right. In the 2nd period it rises from Li (0.98) to F (3.98), and in the 3rd period from Na (0.93) to Cl (3.16)."});
+
+open(P3,{prompt:"<b>1.</b> In your own words, define <i>atomic radius</i>.",sample:"The distance from the nucleus to the edge of the electron cloud. It is measured as half the distance between two identical, bonded nuclei."});
+order(P3,{prompt:"<b>2a.</b> Place these elements in order of <b>decreasing</b> (large to small) atomic radius: Rb, Sr, Cd, I",note:"These elements are not in the data table. Use the periodic table and the trends.",items:["Rb","Sr","Cd","I"],answer:["Rb","Sr","Cd","I"],start:"the largest",why:"All four are in period 5. Radius decreases from left to right across a period: Rb, Sr, Cd, I."});
+order(P3,{prompt:"<b>2b.</b> Place these elements in order of <b>increasing</b> (small to large) atomic radius: Cs, Rb, Ca, B, H",items:["Cs","Rb","Ca","B","H"],answer:["H","B","Ca","Rb","Cs"],start:"the smallest",why:"H (0.53) and B (0.87) are the smallest. Ca is in period 4, Rb in period 5, and Cs in period 6, and radius increases with more energy levels."});
+P3.insertAdjacentHTML("beforeend","<p><b>3\u20138.</b> Graph atomic radius as a function of atomic number.</p>");
+const g3=document.createElement("div");P3.appendChild(g3);
+graph(g3,{key:"r",title:"Atomic Number vs. Atomic Radius",ylab:"Atomic radius (\u00C5)",unit:"\u00C5",data:R,min:0,max:3,step:0.5,fmt:v=>v.toFixed(1),series:["alk","noble","carb","p2a","p3a"]});
+open(P3,{prompt:"<b>9.</b> According to your graph, what is the trend for atomic radius down a family?",sample:"Atomic radius increases down a family. For the alkali metals, Li (1.67) to Na (1.9) to K (2.43) \u00C5. The noble gases also increase from He (0.31) to Ne (0.38) to Ar (0.71)."});
+open(P3,{prompt:"<b>10.</b> According to your graph, what is the trend for atomic radius across a period?",sample:"Atomic radius decreases across a period, from left to right. In the 2nd period it drops from Li (1.67) to Ne (0.38) \u00C5, and in the 3rd period from Na (1.9) to Ar (0.71) \u00C5."});
+
+open(document.getElementById("concl"),{prompt:"",sample:"Atomic radius decreases across a period and increases down a family. Ionization energy and electronegativity increase across a period and decrease down a family. Across a period, effective nuclear charge increases while shielding stays about the same, so the nucleus pulls electrons in more tightly: atoms get smaller and hold their electrons more strongly. Down a family, added energy levels increase shielding and distance, so atoms get larger and hold their outer electrons less strongly."});
+</script>
+</body>
+</html>
